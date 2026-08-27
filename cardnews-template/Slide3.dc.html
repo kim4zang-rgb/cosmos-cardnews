@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+  </style>
+</helmet>
+<div style="width:1080px; height:1350px; position:relative; overflow:hidden; background:#111010; font-family:'Noto Sans KR', sans-serif;">
+
+  <!-- background photo -->
+  <img src="stat-bg.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+  <div style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(17,16,16,0.95) 0%, rgba(17,16,16,0.68) 35%, rgba(17,16,16,0.28) 68%, rgba(17,16,16,0.55) 100%);"></div>
+
+  <!-- progress bar -->
+  <div style="position:absolute; top:40px; left:72px; right:72px; display:flex; gap:6px;">
+    <div style="flex:1; height:3px; background:#fffefc;"></div>
+    <div style="flex:1; height:3px; background:#fffefc;"></div>
+    <div style="flex:1; height:3px; background:#fffefc;"></div>
+    <div style="flex:1; height:3px; background:rgba(255,255,255,0.15);"></div>
+    <div style="flex:1; height:3px; background:rgba(255,255,255,0.15);"></div>
+  </div>
+
+  <!-- centered stat -->
+  <div style="position:absolute; left:72px; right:72px; top:0; bottom:0; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:36px;">
+    <div style="font-family:'Syne', sans-serif; font-weight:800; font-size:112px; line-height:1; letter-spacing:-0.02em; color:#fffefc;">
+      99.9999996%
+    </div>
+    <div style="max-width:880px; font-size:40px; line-height:1.5; color:#8a8580;">
+      우주 공간은 사실상 완전한 진공에 가깝습니다. 소리를 실어 나를 공기 분자 자체가 없는 거죠.
+    </div>
+  </div>
+
+  <!-- brand tick -->
+  <div style="position:absolute; left:72px; bottom:64px; display:inline-flex; align-items:baseline; font-family:'Syne', sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:26px; color:#fffefc;">
+    cosmos<span style="display:inline-block; width:0.28em; height:0.28em; margin-left:0.06em; border-radius:50%; background:#fffefc; transform:translateY(0.05em);"></span>
+  </div>
+
+  <!-- photo credit -->
+  <div style="position:absolute; left:72px; bottom:24px; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.04em; color:rgba(255,255,255,0.3);">
+    PHOTO — NASA GODDARD / FLICKR, CC BY 2.0
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

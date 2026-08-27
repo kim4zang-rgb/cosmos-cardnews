@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+  </style>
+</helmet>
+<div style="width:1080px; height:1350px; position:relative; overflow:hidden; background:#f4f3f1; font-family:'Noto Sans KR', sans-serif;">
+
+  <!-- progress bar -->
+  <div style="position:absolute; top:40px; left:72px; right:72px; display:flex; gap:6px;">
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#e3e0dc;"></div>
+  </div>
+
+  <!-- headline -->
+  <div style="position:absolute; left:72px; right:72px; top:220px;">
+    <div style="font-family:'Syne', 'Noto Sans KR', sans-serif; font-weight:800; font-size:76px; line-height:1.2; letter-spacing:-0.01em; color:#111010;">
+      그럼 영화 속<br>우주 폭발음은 뭘까?
+    </div>
+  </div>
+
+  <!-- list -->
+  <div style="position:absolute; left:72px; right:72px; top:520px; display:flex; flex-direction:column; gap:40px;">
+
+    <div style="display:flex; gap:24px; align-items:flex-start; border-top:1px solid #cfcac4; padding-top:26px;">
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:18px; color:#8a8580;">01</div>
+      <div style="font-size:40px; line-height:1.4; color:#111010;">영화의 폭발음은 몰입감을 위한 &lsquo;연출&rsquo;입니다</div>
+    </div>
+
+    <div style="display:flex; gap:24px; align-items:flex-start; border-top:1px solid #cfcac4; padding-top:26px;">
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:18px; color:#8a8580;">02</div>
+      <div style="font-size:40px; line-height:1.4; color:#111010;">실제 우주선의 진동은 소리가 아니라 데이터로 감지됩니다</div>
+    </div>
+
+    <div style="display:flex; gap:24px; align-items:flex-start; border-top:1px solid #cfcac4; padding-top:26px;">
+      <div style="font-family:'IBM Plex Mono', monospace; font-size:18px; color:#8a8580;">03</div>
+      <div style="font-size:40px; line-height:1.4; color:#111010;">NASA는 전자기파를 소리로 &lsquo;변환&rsquo;해 공개하기도 합니다</div>
+    </div>
+
+  </div>
+
+  <!-- brand tick -->
+  <div style="position:absolute; left:72px; bottom:64px; display:inline-flex; align-items:baseline; font-family:'Syne', sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:26px; color:#111010;">
+    cosmos<span style="display:inline-block; width:0.28em; height:0.28em; margin-left:0.06em; border-radius:50%; background:#111010; transform:translateY(0.05em);"></span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
