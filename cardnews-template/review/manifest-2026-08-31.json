@@ -1,0 +1,14 @@
+[
+  { "id": 1, "subject": "AI", "emoji": "🤖", "title": "AI 기자 스캔들", "url": "https://claude.ai/code/artifact/da1076b6-c3e9-4ba7-99f6-cfeca18166d8" },
+  { "id": 2, "subject": "영화", "emoji": "🎬", "title": "오디세이 흥행", "url": "https://claude.ai/code/artifact/081a8e78-44bb-4fb8-a6c0-240b9e177686" },
+  { "id": 3, "subject": "패션", "emoji": "👗", "title": "서울패션위크", "url": "https://claude.ai/code/artifact/86756778-2b82-4245-9844-c43dcf859a7d" },
+  { "id": 4, "subject": "야구", "emoji": "⚾", "title": "KBO 폭염 중단", "url": "https://claude.ai/code/artifact/8e8dc4ab-bfe1-4afc-87dc-d6f0797ea6ef" },
+  { "id": 5, "subject": "식도락", "emoji": "🐟", "title": "부산 미식 가이드", "url": "https://claude.ai/code/artifact/14eac3f9-dd35-4130-adc7-41efab543806" },
+  { "id": 6, "subject": "가구", "emoji": "🛋️", "title": "템퍼시네마", "url": "https://claude.ai/code/artifact/1714eea7-fac6-48f6-88cd-9819455f5395" },
+  { "id": 7, "subject": "건축", "emoji": "🏛️", "title": "공간문화대상", "url": "https://claude.ai/code/artifact/86761c15-5074-4562-be2f-c7730411c59b" },
+  { "id": 9, "subject": "부동산", "emoji": "🏗️", "title": "청년주택 개발", "url": "https://claude.ai/code/artifact/8204ba15-4d8f-431c-b161-b7fb4944e87e" },
+  { "id": 10, "subject": "경제", "emoji": "🌌", "title": "SK온 배터리 공급계약", "url": "https://claude.ai/code/artifact/fa2127e7-5825-4d81-8cc2-89032b0e2579" },
+  { "id": 11, "subject": "브랜드", "emoji": "📸", "title": "인스타그램 로고 교체", "url": "https://claude.ai/code/artifact/a0847810-2bb7-4159-bd66-0fe904972106" },
+  { "id": 12, "subject": "스니커즈", "emoji": "👟", "title": "아식스 x 세실리에 반센", "url": "https://claude.ai/code/artifact/05b19200-63de-435b-9073-aca5038bc5b8" },
+  { "id": 13, "subject": "식재료", "emoji": "🍑", "title": "8월 제철 식재료", "url": "https://claude.ai/code/artifact/ddca4321-b2ee-45a1-8601-2f1dbc1fdf76" }
+]
