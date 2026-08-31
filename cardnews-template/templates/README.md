@@ -89,6 +89,7 @@ python tools/replace_image.py --dir runs/<날짜>-<주제> --slot point4 \
 5. `canvas.json`을 슬라이드 개수에 맞게 새로 작성 (아래 예시 참고).
 6. `seed-canvas.mjs` → `--check` → `Artifact` 게시.
 7. `node tools/export_cardnews.mjs --dir runs/<날짜>-<주제>` 실행 — 프로젝트 루트 바로 아래 `output/<날짜>-<주제>/`에 슬라이드 순서대로 `01.png`…`0N.png`와 `caption.txt`가 생성됨 (인스타 업로드용, `runs/` 안쪽이 아니라 depth 1로 바로 접근 가능).
+8. `node tools/build_review_page.mjs --dir output/<날짜>-<주제> --title "..." --date "<날짜>" --out review/<날짜>-<주제>.html` 실행 후 `Artifact` 게시(`capabilities: {"downloads": true}`) — 모바일에서 열어보는 리뷰 화면. 카드 6장 미리보기(탭하면 확대) + "이미지 모두 저장" 버튼(이미지마다 저장 확인 창이 뜸, `window.claude.downloads.save` 사용) + 캡션 탭-복사. 저장한 사진은 인스타그램 앱에서 카메라롤로 직접 업로드하면 됨 — git/PC를 거칠 필요 없음.
 
 ### canvas.json 예시 (Cover+Point×3+Stat+Closing = 6장)
 
