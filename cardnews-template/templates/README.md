@@ -49,12 +49,11 @@
 ## 사진·크레딧 규칙
 
 - 배경 사진은 `tools/fetch_bg_image.py --query "..." --out assets/xxx.jpg --width 1080 --height 1350 --max-kb 70` 로 생성 (API 키 불필요).
-- **소스 선택 (`--source`, 기본값 `openverse`)**:
-  - `openverse` (기본) — Flickr·rawpixel 등을 모은 범용 소스. 무드/은유 사진에 적합.
-  - `wikimedia` — 실존 인물·건물·랜드마크 등 "구체적인 대상"이 필요할 때 (예: `--source wikimedia --query "Sagrada Familia"`).
-  - `nasa` — 우주·과학 주제 전용, NASA 제작물은 전부 퍼블릭 도메인.
-  - `unsplash` — 무드/일상/업무 사진의 적중률이 가장 높음 (예: "빈 책상", "키보드" 같은 범용 개념). 무료 Access Key 필요, `.env` 파일에 `UNSPLASH_ACCESS_KEY=...`로 저장돼 있음 (git에는 올라가지 않음).
-  - 검색이 계속 빗나가면 소스를 바꿔서 재시도해본다 — 은유적 무드 사진이 필요하면 `unsplash`부터 시도.
+- **소스 선택 (`--source`, 기본값 `openverse`)** — 아래 우선순위로 고른다:
+  1. `unsplash` — 무드/일상/업무/추상적 개념 사진 (예: "빈 책상", "손으로 쓰는 모습"). 적중률이 가장 높아 기본으로 먼저 시도. 무료 Access Key 필요, `.env` 파일에 `UNSPLASH_ACCESS_KEY=...`로 저장돼 있음 (git에는 올라가지 않음).
+  2. `wikimedia` — 실존 인물·건물·랜드마크 등 "구체적인 대상"이 필요할 때 (예: `--source wikimedia --query "Sagrada Familia"`).
+  3. `nasa` — 우주·과학 주제 전용, NASA 제작물은 전부 퍼블릭 도메인이라 라이선스 고민도 없음.
+  4. `openverse` (기본값) — 위 세 곳에서 안 나올 때 넓게 훑어보는 최후 수단. Flickr 등을 모은 범용 소스라 커버리지는 넓지만 적중률은 상대적으로 낮음.
 - 스크립트 출력의 `creator` / `provider` / `license` 값을 그대로 `__PHOTO_CREDIT__`에 반영 — CC BY 계열은 크레딧 표기가 라이선스 조건이라 생략 금지. NASA는 퍼블릭 도메인이라 크레딧이 필수는 아니지만 관례상 표기한다.
 - **여전히 못 찾으면 사진 없이 간다** — 억지로 애매한 이미지를 쓰지 말고, Point 슬라이드처럼 플랫 배경(브랜드 컬러+타이포)으로 대체하는 걸 기본값으로 삼는다.
 - Point 슬라이드는 원칙적으로 사진을 넣지 않는다 (읽기용 텍스트 슬라이드는 플랫 배경 유지 — 가독성 + 브랜드의 절제된 톤 유지).
