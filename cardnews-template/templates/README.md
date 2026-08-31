@@ -61,11 +61,12 @@
 ## 새 세트 만드는 순서
 
 1. 그날 아이템으로 슬라이드 개수(N) 결정 — Cover 1 + Point N + Stat 0~1 + Closing 1.
-2. `runs/<날짜>/` 폴더 생성, 위 템플릿을 복사해 `Main.dc.html`(Cover), `Point1.dc.html`…`PointN.dc.html`, (필요시) `Stat.dc.html`, `Closing.dc.html`로 이름 지정 — **Main.dc.html은 항상 Cover여야 함** (seed-canvas.mjs가 첫 진입 아트보드로 인식).
-3. 각 파일의 토큰을 그날 스크립트 내용으로 치환.
-4. `tools/fetch_bg_image.py`로 Cover/Stat/Closing용 이미지 3장(또는 Stat 생략 시 2장) 생성.
+2. `runs/<날짜>-<주제>/` 폴더 생성, 위 템플릿을 복사해 `Main.dc.html`(Cover), `Point1.dc.html`…`PointN.dc.html`, (필요시) `Stat.dc.html`, `Closing.dc.html`로 이름 지정 — **Main.dc.html은 항상 Cover여야 함** (seed-canvas.mjs가 첫 진입 아트보드로 인식).
+3. `script.md`에 페이지별 원고 + 인스타 캡션을 함께 작성 (`- 캡션: ...` 한 줄, 문단 구분은 리터럴 `\n`) — 각 파일의 토큰을 이 내용으로 치환.
+4. `tools/fetch_bg_image.py`로 모든 슬라이드(Cover/Point 전부/Stat/Closing)용 배경 이미지를 `assets/`에 생성 — Point 슬라이드도 예외 없이 이미지 필요 (위 "사진·크레딧 규칙" 참고).
 5. `canvas.json`을 슬라이드 개수에 맞게 새로 작성 (아래 예시 참고).
 6. `seed-canvas.mjs` → `--check` → `Artifact` 게시.
+7. `node tools/export_cardnews.mjs --dir runs/<날짜>-<주제>` 실행 — 프로젝트 루트 바로 아래 `output/<날짜>-<주제>/`에 슬라이드 순서대로 `01.png`…`0N.png`와 `caption.txt`가 생성됨 (인스타 업로드용, `runs/` 안쪽이 아니라 depth 1로 바로 접근 가능).
 
 ### canvas.json 예시 (Cover+Point×3+Stat+Closing = 6장)
 
