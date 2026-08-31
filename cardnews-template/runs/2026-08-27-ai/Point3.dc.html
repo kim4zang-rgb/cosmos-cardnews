@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+  </style>
+</helmet>
+<div style="width:1080px; height:1350px; position:relative; overflow:hidden; background:#f4f3f1; font-family:'Noto Sans KR', sans-serif;">
+
+  <!-- progress bar -->
+  <div style="position:absolute; top:40px; left:72px; right:72px; display:flex; gap:6px;">
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#e3e0dc;"></div>
+    <div style="flex:1; height:3px; background:#e3e0dc;"></div>
+  </div>
+
+  <!-- headline -->
+  <div style="position:absolute; left:72px; right:72px; top:420px;">
+    <div style="font-family:'Syne', 'Noto Sans KR', sans-serif; font-weight:800; font-size:76px; line-height:1.2; letter-spacing:-0.01em; color:#111010;">
+      AI가 통째로<br>써낸 기사
+    </div>
+    <div style="margin-top:40px; max-width:900px; font-size:40px; line-height:1.5; color:#57534e;">
+      이 기사들은 'AdVon Commerce'라는 외주업체가 AI로 통째로 생성한 것으로 밝혀졌다.
+    </div>
+  </div>
+
+  <!-- brand tick -->
+  <div style="position:absolute; left:72px; bottom:64px; display:inline-flex; align-items:baseline; font-family:'Syne', sans-serif; font-weight:800; letter-spacing:-0.02em; font-size:26px; color:#111010;">
+    cosmos<span style="display:inline-block; width:0.28em; height:0.28em; margin-left:0.06em; border-radius:50%; background:#111010; transform:translateY(0.05em);"></span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
