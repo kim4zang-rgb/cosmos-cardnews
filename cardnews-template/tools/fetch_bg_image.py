@@ -12,6 +12,9 @@ Sources (--source):
     wikimedia           - Wikimedia Commons; best for specific real people, places,
                            landmarks, and historical subjects
     nasa                - NASA Image and Video Library; public domain, space/science
+    unsplash            - modern lifestyle/mood/business photos; best hit rate for
+                           generic concepts (desk, keyboard, city...). Needs a free
+                           access key: see UNSPLASH_ACCESS_KEY below.
 
 Usage:
     python fetch_bg_image.py --query "night sky stars galaxy" --out ../assets/cover-bg.jpg \
@@ -20,21 +23,50 @@ Usage:
         --width 1080 --height 1350
     python fetch_bg_image.py --source nasa --query "Hubble nebula" --out cover-bg.jpg \
         --width 1080 --height 1350
+    python fetch_bg_image.py --source unsplash --query "empty desk lamp" --out cover-bg.jpg \
+        --width 1080 --height 1350
+
+UNSPLASH_ACCESS_KEY: read from the environment, or from a ".env" file
+(KEY=VALUE per line, no quoting) in this script's project root or its
+parent (../.env relative to tools/). Never hardcode the key in this file
+and never commit .env - it's already in .gitignore.
 """
 import argparse
 import io
 import json
+import os
 import re
 import sys
 import urllib.parse
 import urllib.request
+from pathlib import Path
 
 from PIL import Image
 
 OPENVERSE_API_URL = "https://api.openverse.org/v1/images/"
 WIKIMEDIA_API_URL = "https://commons.wikimedia.org/w/api.php"
 NASA_API_URL = "https://images-api.nasa.gov/search"
+UNSPLASH_API_URL = "https://api.unsplash.com/search/photos"
 USER_AGENT = "cosmos-cardnews-tool/1.0 (background image research)"
+
+
+def _load_dotenv_value(key):
+    """Read KEY=VALUE from a .env file near this script, without any extra dependency."""
+    here = Path(__file__).resolve().parent
+    for candidate in (here / ".env", here.parent / ".env"):
+        if candidate.is_file():
+            for line in candidate.read_text(encoding="utf-8").splitlines():
+                line = line.strip()
+                if not line or line.startswith("#") or "=" not in line:
+                    continue
+                k, _, v = line.partition("=")
+                if k.strip() == key:
+                    return v.strip()
+    return None
+
+
+def get_unsplash_access_key():
+    return os.environ.get("UNSPLASH_ACCESS_KEY") or _load_dotenv_value("UNSPLASH_ACCESS_KEY")
 
 
 def _get_json(url):
@@ -158,6 +190,56 @@ def search_nasa(query, page_size=20):
     return candidates
 
 
+def search_unsplash(query, page_size=20):
+    access_key = get_unsplash_access_key()
+    if not access_key:
+        print("no UNSPLASH_ACCESS_KEY found (env var or .env file)", file=sys.stderr)
+        return []
+    params = {"query": query, "per_page": str(min(page_size, 30))}
+    url = UNSPLASH_API_URL + "?" + urllib.parse.urlencode(params)
+    req = urllib.request.Request(url, headers={
+        "User-Agent": USER_AGENT,
+        "Accept-Version": "v1",
+        "Authorization": f"Client-ID {access_key}",
+    })
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        data = json.load(resp)
+    candidates = []
+    for r in data.get("results", []):
+        urls = r.get("urls", {})
+        user = r.get("user", {})
+        if not urls.get("full"):
+            continue
+        candidates.append({
+            "id": r.get("id"),
+            "title": r.get("description") or r.get("alt_description"),
+            "url": urls.get("full"),
+            "download_location": (r.get("links") or {}).get("download_location"),
+            "creator": user.get("name"),
+            "creator_url": (user.get("links") or {}).get("html"),
+            "license": "Unsplash License",
+            "license_version": "",
+            "license_url": "https://unsplash.com/license",
+            "foreign_landing_url": (r.get("links") or {}).get("html"),
+            "provider": "unsplash",
+        })
+    return candidates
+
+
+def _track_unsplash_download(download_location):
+    access_key = get_unsplash_access_key()
+    if not download_location or not access_key:
+        return
+    try:
+        req = urllib.request.Request(download_location, headers={
+            "User-Agent": USER_AGENT,
+            "Authorization": f"Client-ID {access_key}",
+        })
+        urllib.request.urlopen(req, timeout=10).read()
+    except Exception:
+        pass  # best-effort API compliance ping; never fail the run over this
+
+
 def download(url):
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with urllib.request.urlopen(req, timeout=20) as resp:
@@ -201,10 +283,19 @@ SOURCES = {
     "openverse": search_openverse,
     "wikimedia": search_wikimedia,
     "nasa": search_nasa,
+    "unsplash": search_unsplash,
 }
 
 
 def main():
+    # Windows consoles often default to a non-UTF-8 codepage; photographer
+    # names/titles from these APIs can contain arbitrary Unicode.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
     ap = argparse.ArgumentParser()
     ap.add_argument("--source", choices=sorted(SOURCES), default="openverse")
     ap.add_argument("--query", required=True)
@@ -252,6 +343,9 @@ def main():
 
         with open(args.out, "wb") as f:
             f.write(encoded)
+
+        if candidate.get("download_location"):
+            _track_unsplash_download(candidate["download_location"])
 
         attribution = {
             "source": args.source,
