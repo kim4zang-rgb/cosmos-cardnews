@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Unbounded:wght@500;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+KR:wght@400;500;700;800&display=swap');
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+  </style>
+</helmet>
+<div style="width:1080px; height:1350px; position:relative; overflow:hidden; background:#f4f3f1; font-family:'Noto Sans KR', sans-serif;">
+
+  <!-- background photo -->
+  <img src="point2-bg.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+  <div style="position:absolute; inset:0; background:linear-gradient(180deg, rgba(244,243,241,0.35) 0%, rgba(244,243,241,0.78) 28%, rgba(244,243,241,0.96) 52%, #f4f3f1 100%);"></div>
+
+  <!-- progress bar -->
+  <div style="position:absolute; top:40px; left:72px; right:72px; display:flex; gap:6px;">
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#111010;"></div>
+    <div style="flex:1; height:3px; background:#e3e0dc;"></div>
+    <div style="flex:1; height:3px; background:#e3e0dc;"></div>
+    <div style="flex:1; height:3px; background:#e3e0dc;"></div>
+  </div>
+
+  <!-- headline -->
+  <div style="position:absolute; left:72px; right:72px; top:420px;">
+    <div style="font-family:'Syne', 'Noto Sans KR', sans-serif; font-weight:800; font-size:76px; line-height:1.2; letter-spacing:-0.01em; color:#111010;">
+      3대 메가<br>프로젝트 제시
+    </div>
+    <div style="margin-top:40px; max-width:900px; font-size:40px; line-height:1.5; color:#57534e;">
+      그는 취임과 함께 반도체, 피지컬 AI, AI 데이터센터를 국가 AI 전략의 3대 메가프로젝트로 제시했다. 이 세 축을 중심으로 산업 전반의 AI 전환 속도를 끌어올리겠다는 구상이다.
+    </div>
+  </div>
+
+  <!-- brand tick -->
+  <div style="position:absolute; left:72px; bottom:64px; display:inline-flex; align-items:baseline; gap:0.4em; font-family:'Unbounded', 'Noto Sans KR', sans-serif;">
+    <span style="font-weight:800; font-size:32px; letter-spacing:-0.01em; color:#111010;">OWLSIGHT</span>
+    <span style="font-weight:400; font-size:32px; color:rgba(17,16,16,0.3);">|</span>
+    <span style="font-weight:500; font-size:32px; color:#111010;">AI</span>
+  </div>
+
+  <!-- photo credit -->
+  <div style="position:absolute; left:72px; bottom:24px; font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:0.04em; color:rgba(17,16,16,0.35);">
+    PHOTO — Laura Ockel / Unsplash
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

@@ -9,7 +9,7 @@
 | 채널 | 폴더 | 템플릿 | 카테고리(9개) |
 |---|---|---|---|
 | **cosmos.** (기존) | `runs/`, `output/`, `review/` (접두어 없음) | `templates/` | 스니커즈, 패션, 영화, 식도락, 브랜드, 연예, 가십, 음악, 쇼핑 |
-| **OWLSIGHT** (신규, 남성/경제 중심) | `runs-owlsight/`, `output-owlsight/`, `review-owlsight/` | `templates-owlsight/` | 경제일반, 주식, 부동산, AI, 가상화폐, 신기술, 스타트업, 야구, 건축 |
+| **OWLSIGHT** (신규, 남성/경제 중심) | `runs-owlsight/`, `output-owlsight/`, `review-owlsight/` | `templates-owlsight/` | 경제일반, 주식, 부동산, AI, 가상화폐, 테크, 스타트업, 야구, 산업 |
 
 - `tools/`, `pipeline/write_copy_guidelines.md`의 규칙(분량·최신성 등)은 두 채널 공통.
 - OWLSIGHT는 `templates/`와 완전히 동일한 레이아웃·톤·이미지 규칙을 쓰되, 로고만 다르다 (아래 "OWLSIGHT 템플릿 차이점" 참고). 색상·타이포·사진 처리 방식은 손대지 않는다.
