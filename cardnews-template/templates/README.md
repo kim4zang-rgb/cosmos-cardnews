@@ -1,6 +1,27 @@
-# cosmos. 카드뉴스 슬라이드 템플릿
+# 카드뉴스 슬라이드 템플릿
 
 매일 새 주제로 카드뉴스를 만들 때, 이 폴더의 4개 템플릿을 복사해서 `__TOKEN__` 표시만 실제 내용으로 바꿔 넣는다. `{{ }}` 형식은 Design Components 자체 문법과 겹치므로 절대 쓰지 않고, `__TOKEN__` (더블 언더스코어) 형식만 사용한다.
+
+## 채널 구조 (2026-09-01 확정 — 2개 채널로 분리)
+
+타겟층이 너무 달라서 계정을 2개로 분리했다. 매일 아침 두 채널 모두 "아이템 뽑아줘 → (사람이) 제작할 것 결정 → 번호 지정해서 제작해줘" 순서로 진행한다.
+
+| 채널 | 폴더 | 템플릿 | 카테고리(9개) |
+|---|---|---|---|
+| **cosmos.** (기존) | `runs/`, `output/`, `review/` (접두어 없음) | `templates/` | 스니커즈, 패션, 영화, 식도락, 브랜드, 연예, 가십, 음악, 쇼핑 |
+| **OWLSIGHT** (신규, 남성/경제 중심) | `runs-owlsight/`, `output-owlsight/`, `review-owlsight/` | `templates-owlsight/` | 경제일반, 주식, 부동산, AI, 가상화폐, 신기술, 스타트업, 야구, 건축 |
+
+- `tools/`, `pipeline/write_copy_guidelines.md`의 규칙(분량·최신성 등)은 두 채널 공통.
+- OWLSIGHT는 `templates/`와 완전히 동일한 레이아웃·톤·이미지 규칙을 쓰되, 로고만 다르다 (아래 "OWLSIGHT 템플릿 차이점" 참고). 색상·타이포·사진 처리 방식은 손대지 않는다.
+- 두 채널 다 `output/`, `output-owlsight/`가 프로젝트 루트 바로 아래(= `runs`/`runs-owlsight` 안쪽 아님)에 생기는 건 동일.
+
+### OWLSIGHT 템플릿 차이점
+
+`templates-owlsight/`는 `templates/`를 그대로 복사한 뒤 로고 부분만 바꾼 것 — 나머지 토큰·구조는 100% 동일.
+
+- **하단 브랜드 틱** (Cover/Point/Stat 좌하단): `cosmos.` 대신 `OWLSIGHT | __CATEGORY_TAG__` — 폰트는 Syne이 아니라 **Unbounded**(800). 구분자는 슬래시가 아니라 세로 바(`|`, 흐린 색)이고, `__CATEGORY_TAG__`(카테고리명, 예: `주식`, `부동산`, `AI`)는 `OWLSIGHT`와 같은 색(무게만 500으로 더 얇음)으로 통일돼 있다 — 카테고리 텍스트를 흐리게 하지 말 것.
+- **클로징 로고** (Closing 중앙, 56px): 카테고리 없이 `OWLSIGHT`만, 역시 Unbounded 800.
+- 폰트 import에 `Unbounded:wght@500;800`이 추가돼 있고 Syne도 그대로 남아있음 (헤드라인 텍스트는 여전히 Syne 사용 — 로고만 바뀐 것). Unbounded는 한글 글리프가 없으므로 카테고리 텍스트가 `Noto Sans KR`로 자동 대체되도록 `font-family` 스택에 명시해뒀다.
 
 ## 슬라이드 구성 규칙
 
@@ -82,14 +103,16 @@ python tools/replace_image.py --dir runs/<날짜>-<주제> --slot point4 \
 
 ## 새 세트 만드는 순서
 
+채널이 cosmos.면 `templates/` + `runs/`+`output/`+`review/`, OWLSIGHT면 `templates-owlsight/` + `runs-owlsight/`+`output-owlsight/`+`review-owlsight/`를 쓴다. 아래는 cosmos. 기준 예시이며 OWLSIGHT도 폴더명만 바꿔 그대로 따른다.
+
 1. 그날 아이템으로 슬라이드 개수(N) 결정 — Cover 1 + Point N + Stat 0~1 + Closing 1.
-2. `runs/<날짜>-<주제>/` 폴더 생성, 위 템플릿을 복사해 `Main.dc.html`(Cover), `Point1.dc.html`…`PointN.dc.html`, (필요시) `Stat.dc.html`, `Closing.dc.html`로 이름 지정 — **Main.dc.html은 항상 Cover여야 함** (seed-canvas.mjs가 첫 진입 아트보드로 인식).
+2. `runs/<날짜>-<주제>/` 폴더 생성, 위 템플릿을 복사해 `Main.dc.html`(Cover), `Point1.dc.html`…`PointN.dc.html`, (필요시) `Stat.dc.html`, `Closing.dc.html`로 이름 지정 — **Main.dc.html은 항상 Cover여야 함** (seed-canvas.mjs가 첫 진입 아트보드로 인식). OWLSIGHT는 Cover/Point/Stat의 `__CATEGORY_TAG__` 토큰도 그 세트의 카테고리명으로 채운다.
 3. `script.md`에 페이지별 원고 + 인스타 캡션을 함께 작성 (`- 캡션: ...` 한 줄, 문단 구분은 리터럴 `\n`) — 각 파일의 토큰을 이 내용으로 치환.
 4. `tools/fetch_bg_image.py`로 모든 슬라이드(Cover/Point 전부/Stat/Closing)용 배경 이미지를 `assets/`에 생성 — Point 슬라이드도 예외 없이 이미지 필요 (위 "사진·크레딧 규칙" 참고).
 5. `canvas.json`을 슬라이드 개수에 맞게 새로 작성 (아래 예시 참고).
 6. `seed-canvas.mjs` → `--check` → `Artifact` 게시.
-7. `node tools/export_cardnews.mjs --dir runs/<날짜>-<주제>` 실행 — 프로젝트 루트 바로 아래 `output/<날짜>-<주제>/`에 슬라이드 순서대로 `01.png`…`0N.png`와 `caption.txt`가 생성됨 (인스타 업로드용, `runs/` 안쪽이 아니라 depth 1로 바로 접근 가능).
-8. `node tools/build_review_page.mjs --dir output/<날짜>-<주제> --title "..." --date "<날짜>" --out review/<날짜>-<주제>.html` 실행 후 `Artifact` 게시(`capabilities: {"downloads": true}`) — 모바일에서 열어보는 리뷰 화면. 카드 6장 미리보기(탭하면 확대) + "이미지 모두 저장" 버튼(이미지마다 저장 확인 창이 뜸, `window.claude.downloads.save` 사용) + 캡션 탭-복사. 저장한 사진은 인스타그램 앱에서 카메라롤로 직접 업로드하면 됨 — git/PC를 거칠 필요 없음.
+7. `node tools/export_cardnews.mjs --dir runs/<날짜>-<주제>` 실행 — 프로젝트 루트 바로 아래 `output/<날짜>-<주제>/`에 슬라이드 순서대로 `01.png`…`0N.png`와 `caption.txt`가 생성됨 (인스타 업로드용, `runs/` 안쪽이 아니라 depth 1로 바로 접근 가능). OWLSIGHT는 `runs-owlsight/`, `output-owlsight/`.
+8. `node tools/build_review_page.mjs --dir output/<날짜>-<주제> --title "..." --date "<날짜>" --out review/<날짜>-<주제>.html` 실행 후 `Artifact` 게시(`capabilities: {"downloads": true}`) — 모바일에서 열어보는 리뷰 화면. 카드 6장 미리보기(탭하면 확대) + "이미지 모두 저장" 버튼(이미지마다 저장 확인 창이 뜸, `window.claude.downloads.save` 사용) + 캡션 탭-복사. 저장한 사진은 인스타그램 앱에서 카메라롤로 직접 업로드하면 됨 — git/PC를 거칠 필요 없음. OWLSIGHT는 `review-owlsight/`에 만들고, 허브 페이지도 채널별로 따로 관리한다 (`review/index.html` = cosmos., `review-owlsight/index.html` = OWLSIGHT).
 
 ### canvas.json 예시 (Cover+Point×3+Stat+Closing = 6장)
 
