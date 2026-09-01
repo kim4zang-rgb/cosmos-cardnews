@@ -1,0 +1,11 @@
+[
+  { "id": 1, "subject": "경제", "emoji": "💹", "title": "8월 수출 역대 최고", "url": "https://claude.ai/code/artifact/8e5c384a-12da-4803-91a6-3e05cca677ab" },
+  { "id": 2, "subject": "부동산", "emoji": "🏗️", "title": "9월 분양 vs 입주 절벽", "url": "https://claude.ai/code/artifact/4d5d4e59-b043-4265-9097-2bb6bc7f9e1b" },
+  { "id": 3, "subject": "가구", "emoji": "🛋️", "title": "한샘 유로키친 신제품", "url": "https://claude.ai/code/artifact/e7714341-8baa-473f-8a6a-17321f938bec" },
+  { "id": 4, "subject": "야구", "emoji": "⚾", "title": "KBO 순위 요동", "url": "https://claude.ai/code/artifact/cee960b2-8abf-4f05-91e2-15656c5bb877" },
+  { "id": 5, "subject": "식재료", "emoji": "🍑", "title": "추석 수산물 가격 비상", "url": "https://claude.ai/code/artifact/c599ec9e-b215-4f68-9843-c6eae86ed401" },
+  { "id": 6, "subject": "영화", "emoji": "🎬", "title": "가을 극장가 라인업", "url": "https://claude.ai/code/artifact/ac06df30-93fb-42c0-b780-8a9ffb1fadc3" },
+  { "id": 7, "subject": "패션", "emoji": "👗", "title": "K패션 해외진출 지원", "url": "https://claude.ai/code/artifact/6b49457f-4119-4563-9897-a4a5604b5c6c" },
+  { "id": 8, "subject": "AI", "emoji": "🤖", "title": "국가AI전략위 상임부위원장 취임", "url": "https://claude.ai/code/artifact/9831e20b-03a8-48a7-b96a-6bad5f35cde9" },
+  { "id": 9, "subject": "스니커즈", "emoji": "👟", "title": "아디다스 x 제니", "url": "https://claude.ai/code/artifact/39f0de20-ae9f-46c4-ba10-92052c72776f" }
+]
