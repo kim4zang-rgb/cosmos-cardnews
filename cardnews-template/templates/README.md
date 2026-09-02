@@ -8,8 +8,8 @@
 
 | 채널 | 폴더 | 템플릿 | 카테고리(9개) |
 |---|---|---|---|
-| **cosmos.** (기존) | `runs/`, `output/`, `review/` (접두어 없음) | `templates/` | 스니커즈, 패션, 영화, 식도락, 브랜드, 연예, 가십, 음악, 쇼핑 |
-| **OWLSIGHT** (신규, 남성/경제 중심) | `runs-owlsight/`, `output-owlsight/`, `review-owlsight/` | `templates-owlsight/` | 경제일반, 주식, 부동산, AI, 가상화폐, 테크, 스타트업, 야구, 산업 |
+| **cosmos.** (기존) | `runs/`, `output/` (접두어 없음) | `templates/` | 스니커즈, 패션, 영화, 식도락, 브랜드, 연예, 가십, 음악, 쇼핑 |
+| **OWLSIGHT** (신규, 남성/경제 중심) | `runs-owlsight/`, `output-owlsight/` | `templates-owlsight/` | 경제일반, 주식, 부동산, AI, 가상화폐, 테크, 스타트업, 야구, 산업 |
 
 - `tools/`, `pipeline/write_copy_guidelines.md`의 규칙(분량·최신성 등)은 두 채널 공통.
 - OWLSIGHT는 `templates/`와 완전히 동일한 레이아웃·톤·이미지 규칙을 쓰되, 로고만 다르다 (아래 "OWLSIGHT 템플릿 차이점" 참고). 색상·타이포·사진 처리 방식은 손대지 않는다.
@@ -25,7 +25,7 @@
 1. **카테고리 매핑** — 채널의 9개 고정 카테고리에 맞춰 분류. 초과분(9개 넘는 항목)이나 서로 다른 카테고리인데 같은 회사/사건이 중복되는 경우 플래그.
 2. **팩트 검증** — 원고가 대표님 소유 저작물이라 저작권 문제는 없지만, 외부 AI 도구가 생성한 숫자는 틀릴 수 있어서 특히 의외의 수치(급등락%, 금리, 밸류에이션 등)는 원출처로 재확인 후 진행.
 3. **우리 카피로 리라이팅** — 원고의 훅/구조는 참고하되, 문장은 새로 씀 (원고 헤드라인을 그대로 옮기지 않음 — 설령 대표님 저작물이라도 우리 템플릿 분량 규칙에 맞게 재구성 필요). 훅→Cover 헤드라인+서브카피, 전개 카드→Point 본문(2~3문장 규칙), 마무리→Closing 한 줄.
-4. 이후 파이프라인(이미지 소싱·캔버스 게시·PNG 추출·리뷰 페이지)은 기존과 동일.
+4. 이후 파이프라인(이미지 소싱·캔버스 게시·PNG 추출)은 기존과 동일.
 
 ### OWLSIGHT 템플릿 차이점
 
@@ -131,7 +131,7 @@ python tools/replace_image.py --dir runs/<날짜>-<주제> --slot point4 \
 
 ## 새 세트 만드는 순서
 
-채널이 cosmos.면 `templates/` + `runs/`+`output/`+`review/`, OWLSIGHT면 `templates-owlsight/` + `runs-owlsight/`+`output-owlsight/`+`review-owlsight/`를 쓴다. 아래는 cosmos. 기준 예시이며 OWLSIGHT도 폴더명만 바꿔 그대로 따른다.
+채널이 cosmos.면 `templates/` + `runs/`+`output/`, OWLSIGHT면 `templates-owlsight/` + `runs-owlsight/`+`output-owlsight/`를 쓴다. 아래는 cosmos. 기준 예시이며 OWLSIGHT도 폴더명만 바꿔 그대로 따른다.
 
 1. 그날 아이템으로 슬라이드 개수(N) 결정 — Cover 1 + Point N + Stat 0~1 + Closing 1.
 2. `runs/<날짜>-<주제>/` 폴더 생성, 위 템플릿을 복사해 `Main.dc.html`(Cover), `Point1.dc.html`…`PointN.dc.html`, (필요시) `Stat.dc.html`, `Closing.dc.html`로 이름 지정 — **Main.dc.html은 항상 Cover여야 함** (seed-canvas.mjs가 첫 진입 아트보드로 인식). OWLSIGHT는 Cover/Point/Stat의 `__CATEGORY_TAG__` 토큰도 그 세트의 카테고리명으로 채운다.
@@ -139,8 +139,7 @@ python tools/replace_image.py --dir runs/<날짜>-<주제> --slot point4 \
 4. `tools/fetch_bg_image.py`로 모든 슬라이드(Cover/Point 전부/Stat/Closing)용 배경 이미지를 `assets/`에 생성 — Point 슬라이드도 예외 없이 이미지 필요 (위 "사진·크레딧 규칙" 참고).
 5. `canvas.json`을 슬라이드 개수에 맞게 새로 작성 (아래 예시 참고).
 6. `seed-canvas.mjs` → `--check` → `Artifact` 게시.
-7. `node tools/export_cardnews.mjs --dir runs/<날짜>-<주제>` 실행 — 프로젝트 루트 바로 아래 `output/<날짜>-<주제>/`에 슬라이드 순서대로 `01.png`…`0N.png`와 `caption.txt`가 생성됨 (인스타 업로드용, `runs/` 안쪽이 아니라 depth 1로 바로 접근 가능). OWLSIGHT는 `runs-owlsight/`, `output-owlsight/`.
-8. `node tools/build_review_page.mjs --dir output/<날짜>-<주제> --title "..." --date "<날짜>" --out review/<날짜>-<주제>.html` 실행 후 `Artifact` 게시(`capabilities: {"downloads": true}`) — 모바일에서 열어보는 리뷰 화면. 카드 6장 미리보기(탭하면 확대) + "이미지 모두 저장" 버튼(이미지마다 저장 확인 창이 뜸, `window.claude.downloads.save` 사용) + 캡션 탭-복사. 저장한 사진은 인스타그램 앱에서 카메라롤로 직접 업로드하면 됨 — git/PC를 거칠 필요 없음. OWLSIGHT는 `review-owlsight/`에 만들고, 허브 페이지도 채널별로 따로 관리한다 (`review/index.html` = cosmos., `review-owlsight/index.html` = OWLSIGHT).
+7. `node tools/export_cardnews.mjs --dir runs/<날짜>-<주제>` 실행 — 프로젝트 루트 바로 아래 `output/<날짜>-<주제>/`에 슬라이드 순서대로 `01.png`…`0N.png`와 `caption.txt`가 생성됨 (인스타 업로드용, `runs/` 안쪽이 아니라 depth 1로 바로 접근 가능). OWLSIGHT는 `runs-owlsight/`, `output-owlsight/`. 이 폴더가 최종 산출물 — MyBox로 동기화되니 여기서 바로 인스타그램 앱에 업로드하면 된다 (2026-09-02 확정: 리뷰 페이지·허브 페이지 기능 폐기, 더 이상 만들지 않음).
 
 ### canvas.json 예시 (Cover+Point×3+Stat+Closing = 6장)
 

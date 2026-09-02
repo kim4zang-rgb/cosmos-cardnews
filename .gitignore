@@ -12,13 +12,6 @@ Thumbs.db
 cardnews-template/output/
 cardnews-template/output-owlsight/
 
-# review pages embed all slide PNGs as base64 (heavier than the PNGs
-# themselves) and are already published as Artifacts + regenerable via
-# tools/build_review_page.mjs / build_hub_page.mjs. Keep manifest-*.json
-# (small, useful URL index) but drop the generated HTML.
-cardnews-template/review/*.html
-cardnews-template/review-owlsight/*.html
-
 # daily card-news working folders (script.md, filled .dc.html, sourced
 # photos) — synced separately via Naver MyBox instead of git, so git stays
 # scoped to just the reusable pipeline (tools/templates/pipeline).
