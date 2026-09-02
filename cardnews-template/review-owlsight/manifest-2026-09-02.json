@@ -1,0 +1,11 @@
+[
+  { "id": 1, "subject": "경제일반", "emoji": "💹", "title": "수출 1조달러 vs 반도체 편중", "url": "https://claude.ai/code/artifact/09b9dd0c-e515-433b-b037-ada6cc898f05" },
+  { "id": 2, "subject": "주식", "emoji": "📉", "title": "코스피 3%대 급락, 은행주는 상승", "url": "https://claude.ai/code/artifact/1152d101-4064-4a39-87c5-109f8cb20099" },
+  { "id": 3, "subject": "부동산", "emoji": "🏗️", "title": "종부세 완화, 29일만에 백지화", "url": "https://claude.ai/code/artifact/887ca944-46d6-4fa6-9273-34590757334f" },
+  { "id": 4, "subject": "AI", "emoji": "🦄", "title": "뤼튼, 유니콘 등극+IPO 준비", "url": "https://claude.ai/code/artifact/503de317-3c8d-407e-ad09-9c3e08f3e808" },
+  { "id": 5, "subject": "가상화폐", "emoji": "🪙", "title": "빗썸 AI, 코인 200개 매시간 채점", "url": "https://claude.ai/code/artifact/8eeec125-9a8e-42d6-9967-61ade3d0b66d" },
+  { "id": 6, "subject": "테크", "emoji": "🔬", "title": "삼성 CUBE, zHBM 8배 성능 목표", "url": "https://claude.ai/code/artifact/b538e300-ee8d-4965-b772-bd4ec237f168" },
+  { "id": 7, "subject": "스타트업", "emoji": "🚀", "title": "튜링 GPAI, 美 415개 대학 진출", "url": "https://claude.ai/code/artifact/541b3348-473d-4736-a3a4-6b3928ff01e8" },
+  { "id": 8, "subject": "산업", "emoji": "🏭", "title": "용인 반도체 산단, 착공 2개월 앞당김", "url": "https://claude.ai/code/artifact/a2dd2ef9-8a5d-4f92-b536-7f27837d2bd9" },
+  { "id": 9, "subject": "야구", "emoji": "⚾", "title": "삼성 6연승, KT와 0.5게임차", "url": "https://claude.ai/code/artifact/f700ac33-a9da-4a0e-9c52-f173a6cc0c3b" }
+]
